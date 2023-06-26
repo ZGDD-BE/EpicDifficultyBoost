@@ -38,3 +38,5 @@ out
 
 .vs
 x64/
+
+.vscode/
