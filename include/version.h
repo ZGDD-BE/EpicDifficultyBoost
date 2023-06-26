@@ -26,6 +26,7 @@
 #define PLUGIN_AUTHOR "Dofes"
 #define JsonFile "plugins/ZGDD/EpicDifficultyBoost/config.json"
 #define PluginDir "plugins/ZGDD/EpicDifficultyBoost"
+#define PluginDatabase "plugins/ZGDD/EpicDifficultyBoost/data.db"
 
 // The version of your plugin. If you do not know how to set it, please refer
 // to https://semver.org/ .

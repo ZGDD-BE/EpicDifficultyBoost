@@ -12,8 +12,15 @@ inline bool isInit = false;
 #include <settings.h>
 #include <memory/hook.h>
 
+//thrid-party
+#include <SQLiteCpp/SQLiteCpp.h>
+static std::unique_ptr<SQLite::Database> db;
 
 //MCAPI
+#include <llapi/mc/Attribute.hpp>
+#include <llapi/mc/AttributeInstance.hpp>
+#include <llapi/mc/BaseAttributeMap.hpp>
+#include <llapi/mc/PlayerEventCoordinator.hpp>
 #include <llapi/mc/VariantParameterList.hpp>
 #include <llapi/mc/Creeper.hpp>
 #include <llapi/mc/Actor.hpp>

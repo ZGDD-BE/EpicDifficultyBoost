@@ -13,14 +13,17 @@ if (json.find(key1) != json.end()) {                      \
 namespace settings {
 
     bool SuperCreeper = true;
+    bool HardCorePlayer = true;
     nlohmann::json globaljson() {
         nlohmann::json json;
         json["SuperCreeper"]["Enabled"] = SuperCreeper;
+        json["HardCorePlayer"]["Enabled"] = HardCorePlayer;
         return json;
     }
 
     void initjson(nlohmann::json json) {
         TRJ("SuperCreeper","Enabled", SuperCreeper);
+        TRJ("HardCorePlayer","Enabled", HardCorePlayer);
     }
 
     void writeDefaultConfig(const std::string& fileName) {

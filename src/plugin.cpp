@@ -34,8 +34,26 @@ void loadConfig(){
     }
 }
 
+void loadDatabase(){
+    try {
+        db = std::make_unique<SQLite::Database>(PluginDatabase, SQLite::OPEN_CREATE | SQLite::OPEN_READWRITE);
+    }
+    catch (std::exception const& e) {
+        db = std::make_unique<SQLite::Database>(PluginDatabase, SQLite::OPEN_CREATE | SQLite::OPEN_READWRITE);
+    }
+    db->exec("PRAGMA journal_mode = MEMORY");
+    db->exec("PRAGMA synchronous = NORMAL");
+    db->exec("CREATE TABLE IF NOT EXISTS Players ( \
+			XUID  TEXT PRIMARY KEY \
+			UNIQUE \
+			NOT NULL\
+		) \
+			WITHOUT ROWID; ");
+}
+
 void PluginInit()
 {
     loadConfig();
+    loadDatabase();
     logger.info("Plugin initialized!");
 }

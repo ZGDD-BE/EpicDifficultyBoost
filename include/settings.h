@@ -4,6 +4,7 @@
 
 namespace settings {
     extern bool SuperCreeper;
+    extern bool HardCorePlayer;
     nlohmann::json globaljson();
     void initjson(nlohmann::json json);
     void writeDefaultConfig(const std::string& fileName);
