@@ -24,7 +24,9 @@ namespace FishingMonster
 
     Actor *replaceMonstor(Actor *actor)
     {
-        return genRandomMonster(actor);
+        Actor *monster = genRandomMonster(actor);
+        actor->remove();
+        return monster;
     }
 }
 
