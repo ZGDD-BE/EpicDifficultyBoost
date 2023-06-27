@@ -58,10 +58,22 @@ void loadDatabase()
 		) \
 			WITHOUT ROWID; ");
 }
-
+void RegCommand() { 
+    using ParamType = DynamicCommand::ParameterType;
+    auto command = DynamicCommand::createCommand("zgdd", "Enhances the original difficulty", CommandPermissionLevel::GameMasters, { (CommandFlagValue)0x80 }, { (CommandFlagValue)1 });
+    command->addOverload();
+    command->setCallback([](DynamicCommand const& command, CommandOrigin const& origin, CommandOutput& output, std::unordered_map<std::string, DynamicCommand::Result>& results) {
+        return output.success();
+         });
+     DynamicCommand::setup(std::move(command));
+}
 void PluginInit()
 {
     loadConfig();
     loadDatabase();
     logger.info("Plugin initialized!");
+    Event::ServerStartedEvent::subscribe([](const Event::ServerStartedEvent) {
+        RegCommand();
+        return true;
+        });
 }

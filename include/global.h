@@ -7,6 +7,9 @@ inline bool isInit = false;
 //LLAPI
 #include <llapi/Global.h>
 #include <llapi/ScheduleAPI.h>
+#include <llapi/RegCommandAPI.h>
+#include <llapi/DynamicCommandAPI.h>
+#include <llapi/EventAPI.h>
 
 //EDB
 #include <settings.h>
