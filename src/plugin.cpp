@@ -7,38 +7,46 @@
 
 /**
  * @brief The entrypoint of the plugin. DO NOT remove or rename this function.
- *        
+ *
  */
 
-void loadConfig(){
-    settings::writeDefaultConfig(JsonFile);
+void loadConfig()
+{
     if (!std::filesystem::exists(PluginDir))
         std::filesystem::create_directories(PluginDir);
-    //tr	
-    if (std::filesystem::exists(JsonFile)) {
-        try {
+    // tr
+    if (std::filesystem::exists(JsonFile))
+    {
+        try
+        {
             settings::loadConfigFromJson(JsonFile);
         }
-        catch (std::exception& e) {
+        catch (std::exception &e)
+        {
             logger.warn("Config File isInvalid, Err {}", e.what());
             exit(1);
         }
-        catch (...) {
+        catch (...)
+        {
             logger.warn("Config File isInvalid");
             exit(1);
         }
     }
-    else {
+    else
+    {
         logger.info("Config with default values created");
         settings::writeDefaultConfig(JsonFile);
     }
 }
 
-void loadDatabase(){
-    try {
+void loadDatabase()
+{
+    try
+    {
         db = std::make_unique<SQLite::Database>(PluginDatabase, SQLite::OPEN_CREATE | SQLite::OPEN_READWRITE);
     }
-    catch (std::exception const& e) {
+    catch (std::exception const &e)
+    {
         db = std::make_unique<SQLite::Database>(PluginDatabase, SQLite::OPEN_CREATE | SQLite::OPEN_READWRITE);
     }
     db->exec("PRAGMA journal_mode = MEMORY");

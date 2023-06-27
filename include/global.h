@@ -17,6 +17,9 @@ inline bool isInit = false;
 static std::unique_ptr<SQLite::Database> db;
 
 //MCAPI
+#include <llapi/mc/ItemActor.hpp>
+#include <llapi/mc/CompoundTag.hpp>
+#include <llapi/mc/Spawner.hpp>
 #include <llapi/mc/Attribute.hpp>
 #include <llapi/mc/AttributeInstance.hpp>
 #include <llapi/mc/BaseAttributeMap.hpp>
