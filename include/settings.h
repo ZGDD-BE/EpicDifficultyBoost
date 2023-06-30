@@ -5,6 +5,8 @@
 
 namespace settings {
     using jsonDictVector = std::vector<std::unordered_map<std::string, nlohmann::json>>;
+    extern std::unordered_map<std::string,int> Foods;
+    extern SU<bool> FoodEnhance;
     extern SU<bool> SuperCreeper;
     extern SU<bool> HardCorePlayer;
     extern SU<bool> FishingMonster;

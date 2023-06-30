@@ -19,3 +19,21 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     }
     return origin(player);
 }
+
+LL_AUTO_TYPED_INSTANCE_HOOK(
+    PlayerEat,
+    Player,
+    HookPriority::Normal,
+    "?eat@Player@@QEAAXAEBVItemStack@@@Z",
+    void,
+    ItemStack* item) {
+    if (settings::HardCorePlayer && settings::FoodEnhance) {
+        try {
+            HardCorePlayer::eatFood(this,item);
+        }
+        catch (...) {
+            return origin(item);
+        }
+    }
+    return origin(item);
+}

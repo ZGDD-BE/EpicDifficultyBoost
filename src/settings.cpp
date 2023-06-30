@@ -8,7 +8,7 @@ namespace settings
     SU<bool> HardCorePlayer(true, { "HardCorePlayer", "Enabled" });
     SU<bool> FoodEnhance(true, { "HardCorePlayer", "FoodEnhance", "Enabled" });
     SU<jsonDictVector> FoodList({{{"name", "minecraft:apple"}, {"point", 4}}}, { "HardCorePlayer", "FoodEnhance", "List" });
-
+    std::unordered_map<std::string,int> Foods;
     ///fishingMonster///
     SU<bool> FishingMonster(true, { "FishingMonster", "Enabled" });
     SU<double> FishingMonsterPersentage(0.5,{ "FishingMonster", "Persentage" });
@@ -17,7 +17,6 @@ namespace settings
 
     ///superCreeper///
     SU<bool> SuperCreeper(true, { "SuperCreeper", "Enabled" });
-
 
     void checkChance()
     {
@@ -36,6 +35,13 @@ namespace settings
         for (const auto& monsterType : FishingMonsterTypeList)
         {
             FishingMonsterchances.push_back(monsterType.at("chance").get<double>());
+        }
+    }
+
+    void toFoods() {
+        for (const auto& item : FoodList) 
+        {
+            Foods[item.at("name").get<std::string>()] = item.at("point").get<int>();
         }
     }
 
@@ -63,6 +69,7 @@ namespace settings
         FishingMonsterTypeList.load(json);
         SuperCreeper.load(json);
         checkChance();
+        toFoods();
     }
 
     void writeDefaultConfig(const std::string &fileName)
