@@ -1,5 +1,5 @@
 #include <global.h>
-#include "hardCorePlayer.hpp"
+#include "hardCorePlayer.h"
 
 LL_AUTO_TYPED_INSTANCE_HOOK(
     HungerTick,
