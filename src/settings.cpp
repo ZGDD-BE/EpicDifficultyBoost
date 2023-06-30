@@ -25,6 +25,11 @@ namespace settings
     SU<bool> SuperSkeleton(true, { "SuperSkeleton", "Enabled" });
     SU<int> SuperSkeletonSpeedLimit(10, { "SuperSkeleton", "SpeedLimit" });
 
+    ///gameRules///
+    SU<bool> AlwaysNight(true, { "GameRules", "AlwaysNight", "Enabled" });
+    SU<bool> NaturalRegeneration(false, { "GameRules", "NaturalRegeneration", "Enabled" });
+
+
     void checkChance()
     {
         double totalChance = 0.0;
@@ -67,6 +72,8 @@ namespace settings
         SuperSkeletonSpeedLimit.save(json);
         NormalHealth.save(json);
         NormalHealthPoint.save(json);
+        AlwaysNight.save(json);
+        NaturalRegeneration.save(json);
         return json;
     }
 
@@ -83,6 +90,8 @@ namespace settings
         SuperSkeletonSpeedLimit.load(json);
         NormalHealth.load(json);
         NormalHealthPoint.load(json);
+        AlwaysNight.load(json);
+        NaturalRegeneration.load(json);
         checkChance();
         toFoods();
     }

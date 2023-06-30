@@ -114,7 +114,7 @@ public:
     /**
      * @symbol ?getScriptingEngineV2\@ServerInstance\@\@QEAAPEAVScriptEngine\@Scripting\@\@XZ
      */
-    MCAPI class Scripting::ScriptEngine * getScriptingEngineV2();
+    //MCAPI class Scripting::ScriptEngine * getScriptingEngineV2();
     /**
      * @symbol ?getServerItemRegistry\@ServerInstance\@\@QEBA?AVItemRegistryRef\@\@XZ
      */

@@ -64,7 +64,7 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     if (settings::HardCorePlayer && settings::NormalHealth) {
         try {
             HardCorePlayer::loadDefaultHealth(this);
-            origin();
+            return origin();
         }
         catch (...) {
             return origin();

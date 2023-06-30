@@ -17,6 +17,8 @@ namespace settings {
     extern SU<int> SuperSkeletonSpeedLimit;
     extern SU<bool> NormalHealth;
     extern SU<int> NormalHealthPoint;
+    extern SU<bool> AlwaysNight;
+    extern SU<bool> NaturalRegeneration;
     nlohmann::json globaljson();
     void initjson(nlohmann::json json);
     void writeDefaultConfig(const std::string& fileName);
