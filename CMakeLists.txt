@@ -48,6 +48,7 @@ add_compile_options(
     /utf-8
     /Zc:inline
     /Zi
+    /MP
 )
 
 add_link_options(
