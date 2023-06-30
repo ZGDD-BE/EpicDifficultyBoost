@@ -54,3 +54,43 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
 	}
 	return origin();
 }
+
+LL_AUTO_TYPED_INSTANCE_HOOK(
+    defaultHealth,
+    ServerPlayer,
+    HookPriority::Highest,
+    "?setLocalPlayerAsInitialized@ServerPlayer@@QEAAXXZ",
+    bool) {
+    if (settings::HardCorePlayer && settings::NormalHealth) {
+        try {
+            HardCorePlayer::loadDefaultHealth(this);
+            origin();
+        }
+        catch (...) {
+            return origin();
+        }
+    }
+    return origin();
+}
+
+//LL_AUTO_TYPED_INSTANCE_HOOK(
+//    defaultHealth_,
+//    Player,
+//    HookPriority::Normal,
+//    "?readAdditionalSaveData@Player@@MEAAXAEBVCompoundTag@@AEAVDataLoadHelper@@@Z",
+//    void,
+//    CompoundTag* a2, 
+//    DataLoadHelper* a3) {
+//    if (settings::HardCorePlayer && settings::NormalHealth) {
+//        try {
+//            HardCorePlayer::loadDefaultHealth(this);
+//            origin(a2, a3);
+//        }
+//        catch (...) {
+//            origin(a2, a3);
+//        }
+//    }
+//    origin(a2, a3);
+//}
+
+

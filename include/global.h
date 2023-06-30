@@ -19,6 +19,11 @@ inline bool isInit = false;
 #include <SQLiteCpp/SQLiteCpp.h>
 
 //MCAPI
+#include <llapi/mc/AttributeInstance.hpp>
+#include <llapi/mc/CompoundTag.hpp>
+#include <llapi/mc/Attribute.hpp>
+#include <llapi/mc/PacketSender.hpp>
+#include <llapi/mc/Certificate.hpp>
 #include <llapi/mc/RangedAttackGoal.hpp>
 #include <llapi/mc/ShooterComponent.hpp>
 #include <llapi/mc/ActorDefinitionIdentifier.hpp>
