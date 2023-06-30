@@ -45,7 +45,7 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     "?isIgnited@Actor@@QEBA_NXZ",
     bool
 ) {
-    if (settings::SuperCreeper && this->getTypeName() == "minecraft:creeper") {
+    if (settings::SuperCreeper.value && this->getTypeName() == "minecraft:creeper") {
         try {
             return SuperCreeper::isIgnited(this,origin());
         }
@@ -63,7 +63,7 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     "?normalTick@Creeper@@UEAAXXZ",
     void
 ) {
-    if (settings::SuperCreeper) {
+    if (settings::SuperCreeper.value) {
         try {
             SuperCreeper::normalTick(this);
         }
@@ -82,7 +82,7 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     bool,
     ActorDamageSource& src, float damage,bool unk1_1, bool unk2_0
 ){
-    if (settings::SuperCreeper && this->getTypeName() == "minecraft:creeper") {
+    if (settings::SuperCreeper.value && this->getTypeName() == "minecraft:creeper") {
         try {
             if (SuperCreeper::hurt(this,damage,&src))
                 return origin(src,damage,unk1_1,unk2_0);
@@ -102,7 +102,7 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     float,
     ActorDamageSource* src, float damage
 ){
-    if(this && settings::SuperCreeper){
+    if(this && settings::SuperCreeper.value){
         if (src->getCause() == ActorDamageCause::Magic && this->getTypeName() == "minecraft:creeper") {
             try {
                 if (SuperCreeper::hurt(this,damage,src))

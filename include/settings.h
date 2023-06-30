@@ -1,14 +1,15 @@
 #pragma once
 
 #include <Nlohmann/json.hpp>
+#include <utils/SU.hpp>
 
 namespace settings {
     using jsonDictVector = std::vector<std::unordered_map<std::string, nlohmann::json>>;
-    extern bool SuperCreeper;
-    extern bool HardCorePlayer;
-    extern bool FishingMonster;
-    extern double FishingMonsterPersentage;
-    extern jsonDictVector FishingMonsterTypeList;
+    extern SU<bool> SuperCreeper;
+    extern SU<bool> HardCorePlayer;
+    extern SU<bool> FishingMonster;
+    extern SU<double> FishingMonsterPersentage;
+    extern SU<jsonDictVector> FishingMonsterTypeList;
     extern std::vector<double> FishingMonsterchances;
     nlohmann::json globaljson();
     void initjson(nlohmann::json json);

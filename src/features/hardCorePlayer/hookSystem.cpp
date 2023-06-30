@@ -9,7 +9,7 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     void,
     Player* player
 ) {
-    if (settings::HardCorePlayer) {
+    if (settings::HardCorePlayer.value) {
         try {
             HardCorePlayer::hungerTick(player);
         }
