@@ -22,18 +22,18 @@ namespace settings
     void checkChance()
     {
         double totalChance = 0.0;
-        for (const auto& item : FishingMonsterTypeList.value)
+        for (const auto& item : FishingMonsterTypeList)
         {
             totalChance += item.at("chance").get<double>();
         }
         if (totalChance != 1.0)
         {
-            for (auto& item : FishingMonsterTypeList.value)
+            for (auto& item : FishingMonsterTypeList)
             {
                 item["chance"] = item.at("chance").get<double>() / totalChance;
             }
         }
-        for (const auto& monsterType : FishingMonsterTypeList.value)
+        for (const auto& monsterType : FishingMonsterTypeList)
         {
             FishingMonsterchances.push_back(monsterType.at("chance").get<double>());
         }

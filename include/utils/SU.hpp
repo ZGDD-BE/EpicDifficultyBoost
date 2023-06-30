@@ -6,9 +6,11 @@
 using jsonDictVector = std::vector<std::unordered_map<std::string, nlohmann::json>>;
 template<typename T>
 class SU {
-public:
+private:
     T value;
     std::vector<std::string> keys;
+
+public:
     SU(T val, std::initializer_list<std::string> keys) : value(val), keys(keys) {}
 
     void load(const nlohmann::json& json) {
@@ -35,6 +37,32 @@ public:
             }
             *jsonPtr = value;
         }
+    }
+
+    auto begin() {
+        return value.begin();
+    }
+
+    auto end() {
+        return value.end();
+    }
+
+    bool operator==(const T& other) const {
+        return value == other;
+    }
+
+    operator T() const {
+        return value;
+    }
+
+    SU(const T& value) : value(value) {}
+
+    auto& operator[](size_t index) {
+        return value[index];
+    }
+
+    const auto& operator[](size_t index) const {
+        return value[index];
     }
 
 private:
