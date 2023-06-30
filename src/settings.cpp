@@ -18,6 +18,10 @@ namespace settings
     ///superCreeper///
     SU<bool> SuperCreeper(true, { "SuperCreeper", "Enabled" });
 
+    ///superSkeleton///
+    SU<bool> SuperSkeleton(true, { "SuperSkeleton", "Enabled" });
+    SU<int> SuperSkeletonSpeedLimit(10, { "SuperSkeleton", "SpeedLimit" });
+
     void checkChance()
     {
         double totalChance = 0.0;
@@ -56,6 +60,8 @@ namespace settings
         FishingMonsterPersentage.save(json);
         FishingMonsterTypeList.save(json);
         SuperCreeper.save(json);
+        SuperSkeleton.save(json);
+        SuperSkeletonSpeedLimit.save(json);
         return json;
     }
 
@@ -68,6 +74,8 @@ namespace settings
         FishingMonsterPersentage.load(json);
         FishingMonsterTypeList.load(json);
         SuperCreeper.load(json);
+        SuperSkeleton.load(json);
+        SuperSkeletonSpeedLimit.load(json);
         checkChance();
         toFoods();
     }

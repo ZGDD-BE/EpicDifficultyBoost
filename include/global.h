@@ -20,6 +20,9 @@ inline bool isInit = false;
 static std::unique_ptr<SQLite::Database> db;
 
 //MCAPI
+#include <llapi/mc/RangedAttackGoal.hpp>
+#include <llapi/mc/ShooterComponent.hpp>
+#include <llapi/mc/ActorDefinitionIdentifier.hpp>
 #include <llapi/mc/ItemActor.hpp>
 #include <llapi/mc/CompoundTag.hpp>
 #include <llapi/mc/Spawner.hpp>
