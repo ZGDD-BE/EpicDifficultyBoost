@@ -7,8 +7,11 @@ namespace settings
     ///hardCorePlayer///
     SU<bool> HardCorePlayer(true, { "HardCorePlayer", "Enabled" });
     SU<bool> FoodEnhance(true, { "HardCorePlayer", "FoodEnhance", "Enabled" });
+    SU<bool> NormalHealth(true, { "HardCorePlayer", "NormalHealth", "Enabled" });
+    SU<int> NormalHealthPoint(5, { "HardCorePlayer", "NormalHealth", "Point" });
     SU<jsonDictVector> FoodList({{{"name", "minecraft:apple"}, {"point", 4}}}, { "HardCorePlayer", "FoodEnhance", "List" });
     std::unordered_map<std::string,int> Foods;
+
     ///fishingMonster///
     SU<bool> FishingMonster(true, { "FishingMonster", "Enabled" });
     SU<double> FishingMonsterPersentage(0.5,{ "FishingMonster", "Persentage" });
@@ -62,6 +65,8 @@ namespace settings
         SuperCreeper.save(json);
         SuperSkeleton.save(json);
         SuperSkeletonSpeedLimit.save(json);
+        NormalHealth.save(json);
+        NormalHealthPoint.save(json);
         return json;
     }
 
@@ -76,6 +81,8 @@ namespace settings
         SuperCreeper.load(json);
         SuperSkeleton.load(json);
         SuperSkeletonSpeedLimit.load(json);
+        NormalHealth.load(json);
+        NormalHealthPoint.load(json);
         checkChance();
         toFoods();
     }

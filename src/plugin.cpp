@@ -41,8 +41,10 @@ void loadConfig()
 
 void loadDatabase()
 {
+    static std::unique_ptr<SQLite::Database> db;
     try
     {
+        
         db = std::make_unique<SQLite::Database>(PluginDatabase, SQLite::OPEN_CREATE | SQLite::OPEN_READWRITE);
     }
     catch (std::exception const &e)
@@ -51,12 +53,8 @@ void loadDatabase()
     }
     db->exec("PRAGMA journal_mode = MEMORY");
     db->exec("PRAGMA synchronous = NORMAL");
-    db->exec("CREATE TABLE IF NOT EXISTS Players ( \
-			XUID  TEXT PRIMARY KEY \
-			UNIQUE \
-			NOT NULL\
-		) \
-			WITHOUT ROWID; ");
+    db->exec("CREATE TABLE IF NOT EXISTS Players (  XUID	TEXT	PRIMARY	KEY	UNIQUE	NOT	NULL,TIMES	INT	NOT	NULL)WITHOUT ROWID; ");
+    db.reset();
 }
 void RegCommand() { 
     using ParamType = DynamicCommand::ParameterType;

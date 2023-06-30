@@ -3,4 +3,5 @@
 namespace HardCorePlayer {
 	void hungerTick(Player* player);
 	void eatFood(Player* player, ItemStack* item);
+	void healthTick(Player* player);
 }

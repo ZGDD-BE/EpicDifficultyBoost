@@ -37,3 +37,20 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     }
     return origin(item);
 }
+
+LL_AUTO_TYPED_INSTANCE_HOOK(
+    healthTick,
+    Player,
+    HookPriority::Normal,
+    "?normalTick@Player@@UEAAXXZ",
+    void) {
+    if (settings::HardCorePlayer && settings::NormalHealth) {
+        try {
+            HardCorePlayer::healthTick(this);
+		}
+        catch (...) {
+			return origin();
+		}
+	}
+	return origin();
+}

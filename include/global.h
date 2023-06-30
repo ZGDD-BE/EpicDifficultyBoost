@@ -17,7 +17,6 @@ inline bool isInit = false;
 
 //thrid-party
 #include <SQLiteCpp/SQLiteCpp.h>
-static std::unique_ptr<SQLite::Database> db;
 
 //MCAPI
 #include <llapi/mc/RangedAttackGoal.hpp>
