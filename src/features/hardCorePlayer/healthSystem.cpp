@@ -33,12 +33,17 @@ namespace HardCorePlayer {
 		db = std::make_unique<SQLite::Database>(PluginDatabase, SQLite::OPEN_CREATE | SQLite::OPEN_READWRITE);
 		if (playersTickTime[player->getXuid()] % (20 * 60) == 0)
 		{
-
+			auto ti = getPlayerAliveTime(player);
 			SQLite::Statement insert(*db, "INSERT OR REPLACE INTO Players(XUID, TIMES) VALUES(?, ?)");
 			insert.bind(1, player->getXuid());
-			insert.bind(2, getPlayerAliveTime(player) + 1);
+			insert.bind(2, ti + 1);
 			insert.exec();
 			playersTickTime[player->getXuid()] = 0;
+			if (const_cast<AttributeInstance&>(player->getAttribute(Attribute::getByName("minecraft:health"))).getMaxValue() < 20.0f)
+			{
+				auto hp = (settings::NormalHealthPoint + int((ti + 1) / 60) < 20) ? settings::NormalHealthPoint + int((ti + 1) / 60) : 20;
+				const_cast<AttributeInstance&>(player->getAttribute(Attribute::getByName("minecraft:health"))).setMaxValue(hp);
+			}
 		}
 
 	}
