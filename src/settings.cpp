@@ -11,6 +11,7 @@ namespace settings
     SU<int> NormalHealthPoint(10, { "HardCorePlayer", "NormalHealth", "Point" });
     SU<jsonDictVector> FoodList({{{"name", "minecraft:apple"}, {"point", 4}}}, { "HardCorePlayer", "FoodEnhance", "List" });
     SU<bool> KeepInv(true, { "HardCorePlayer", "KeepInv", "Enabled" });
+    SU<bool> SleepingHungerToHealth(true, { "HardCorePlayer", "SleepingHungerToHealth", "Enabled" });
     SU<std::string> KeepInvCostItem("minecraft:skull", {"HardCorePlayer", "KeepInv", "CostItem"});
     std::unordered_map<std::string,int> Foods;
 
@@ -78,6 +79,7 @@ namespace settings
         NaturalRegeneration.save(json);
         KeepInv.save(json);
         KeepInvCostItem.save(json);
+        SleepingHungerToHealth.save(json);
         return json;
     }
 
@@ -98,6 +100,7 @@ namespace settings
         NaturalRegeneration.load(json);
         KeepInv.load(json);
         KeepInvCostItem.load(json);
+        SleepingHungerToHealth.load(json);
         checkChance();
         toFoods();
     }

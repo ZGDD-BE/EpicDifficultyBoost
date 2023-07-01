@@ -73,6 +73,25 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     return origin();
 }
 
+LL_AUTO_TYPED_INSTANCE_HOOK(
+    isSleeping,
+    Player,
+    HookPriority::Normal,
+    "?isSleeping@Player@@UEBA_NXZ",
+    bool) {
+    if (settings::HardCorePlayer && settings::SleepingHungerToHealth && origin()) {
+        try {
+            HardCorePlayer::hungerToHealth(this);
+            return origin();
+        }
+        catch (...) {
+            return origin();
+        }
+    }
+    return origin();
+}
+
+
 //LL_AUTO_TYPED_INSTANCE_HOOK(
 //    defaultHealth_,
 //    Player,

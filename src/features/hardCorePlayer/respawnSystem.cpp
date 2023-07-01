@@ -24,7 +24,7 @@ namespace HardCorePlayer {
     bool keepInventory(Player* player) {
         if (player->isPlayer())
         {
-            logger.info("2");
+            //logger.info("2");
             for (auto item : player->getInventory().getAllSlots()) {
                 if (item->getTypeName() == settings::KeepInvCostItem) {
                     ((ItemStackBase*)item)->remove(1);
@@ -47,7 +47,7 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     void,
     bool onlyClearContainer
 ) {
-    if (!settings::KeepInv) {
+    if (settings::HardCorePlayer && !settings::KeepInv) {
         return origin(onlyClearContainer);
     }
     auto ac = (Actor*)*((unsigned __int64*)(*((Inventory**)this + 24)) + 31);
@@ -67,7 +67,7 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     "?dropEquipmentOnDeath@Player@@UEAAXXZ",
     void
 ) {
-    if (!settings::KeepInv) {
+    if (settings::HardCorePlayer && !settings::KeepInv) {
         return origin();
     }
     if (kINv.contains(this->getUuid()))
@@ -83,7 +83,7 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     void,
     const ActorDamageSource* a2, int a3
 ) {
-    if (!settings::KeepInv) {
+    if (settings::HardCorePlayer && !settings::KeepInv) {
         return origin(a2, a3);
     }
     if (kINv.contains(this->getUuid()))
@@ -98,7 +98,7 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     "?clearVanishEnchantedItemsOnDeath@ServerPlayer@@UEAAXXZ",
     void
 ) {
-    if (!settings::KeepInv) {
+    if (settings::HardCorePlayer && !settings::KeepInv) {
         return origin();
     }
     if (kINv.contains(this->getUuid()))
@@ -113,7 +113,7 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     "?clearVanishEnchantedItemsOnDeath@PlayerInventory@@QEAAXXZ",
     void
 ) {
-    if (!settings::KeepInv) {
+    if (settings::HardCorePlayer && !settings::KeepInv) {
         return origin();
     }
     auto ac = (Actor*)*((unsigned __int64*)(*((Inventory**)this + 24)) + 31);
@@ -134,7 +134,7 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     void,
     const ActorDamageSource* a2
 ) {
-    if (!settings::KeepInv) {
+    if (settings::HardCorePlayer && !settings::KeepInv) {
         return origin(a2);
     }
     if (HardCorePlayer::keepInventory(this))
@@ -154,7 +154,7 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     void
 ) {
     origin();
-    if (!settings::KeepInv) {
+    if (settings::HardCorePlayer && !settings::KeepInv) {
         return;
     }
     if (ExpJson.contains(this->getUuid())) {
