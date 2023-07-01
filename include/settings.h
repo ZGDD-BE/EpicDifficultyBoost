@@ -19,6 +19,8 @@ namespace settings {
     extern SU<int> NormalHealthPoint;
     extern SU<bool> AlwaysNight;
     extern SU<bool> NaturalRegeneration;
+    extern SU<bool> KeepInv;
+    extern SU<std::string> KeepInvCostItem;
     nlohmann::json globaljson();
     void initjson(nlohmann::json json);
     void writeDefaultConfig(const std::string& fileName);

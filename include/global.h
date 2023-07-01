@@ -19,6 +19,9 @@ inline bool isInit = false;
 #include <SQLiteCpp/SQLiteCpp.h>
 
 //MCAPI
+#include <llapi/mc/PlayerInventory.hpp>
+#include <llapi/mc/Inventory.hpp>
+#include <llapi/mc/ActorDamageSource.hpp>
 #include <llapi/mc/AttributeInstance.hpp>
 #include <llapi/mc/CompoundTag.hpp>
 #include <llapi/mc/Attribute.hpp>
