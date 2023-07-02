@@ -54,7 +54,7 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     if (ac && ac->isPlayer())
     {
         auto pl = (Player*)ac;
-        if (kINv.contains(pl->getUuid()))
+        if (kINv.contains(pl->getXuid()))
             return;
     }
     origin(onlyClearContainer);
@@ -70,7 +70,7 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     if (settings::HardCorePlayer && !settings::KeepInv) {
         return origin();
     }
-    if (kINv.contains(this->getUuid()))
+    if (kINv.contains(this->getXuid()))
         return;
     origin();
 }
@@ -86,7 +86,7 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     if (settings::HardCorePlayer && !settings::KeepInv) {
         return origin(a2, a3);
     }
-    if (kINv.contains(this->getUuid()))
+    if (kINv.contains(this->getXuid()))
         return;
     origin(a2, a3);
 }
@@ -101,7 +101,7 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     if (settings::HardCorePlayer && !settings::KeepInv) {
         return origin();
     }
-    if (kINv.contains(this->getUuid()))
+    if (kINv.contains(this->getXuid()))
         return;
     origin();
 }
@@ -120,7 +120,7 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     if (ac && ac->isPlayer())
     {
         auto pl = (Player*)ac;
-        if (kINv.contains(pl->getUuid()))
+        if (kINv.contains(pl->getXuid()))
             return;
     }
     origin();
@@ -139,8 +139,8 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     }
     if (HardCorePlayer::keepInventory(this))
     {
-        ExpJson[this->getUuid()] = this->getTotalExperience();
-        kINv[this->getUuid()] = true;
+        ExpJson[this->getXuid()] = this->getTotalExperience();
+        kINv[this->getXuid()] = true;
         this->setTotalExperience(0);
     }
     origin(a2);
@@ -157,10 +157,10 @@ LL_AUTO_TYPED_INSTANCE_HOOK(
     if (settings::HardCorePlayer && !settings::KeepInv) {
         return;
     }
-    if (ExpJson.contains(this->getUuid())) {
-        auto expe = ExpJson[this->getUuid()].get<int>() + 1;
-        ExpJson.erase(this->getUuid());
-        kINv.erase(this->getUuid());
+    if (ExpJson.contains(this->getXuid())) {
+        auto expe = ExpJson[this->getXuid()].get<int>() + 1;
+        ExpJson.erase(this->getXuid());
+        kINv.erase(this->getXuid());
         this->setTotalExperience(expe);
     }
 }
