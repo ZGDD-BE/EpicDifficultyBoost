@@ -48,6 +48,7 @@
 ### 🏆 致谢
 
 - 感谢[dreamguxiang](https://github.com/dreamguxiang)对[BETweaker](https://github.com/dreamguxiang/BETweaker)项目的发起和维护
+- 感谢🐟对本项目的赞助与支持
 
 ### 📞 联系
 
