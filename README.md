@@ -46,6 +46,7 @@ This plugin is based on [LiteLoaderBDS](https://github.com/LiteLDev/LiteLoaderBD
 ### 🏆 Acknowledgements
 
 - Thanks to [dreamguxiang](https://github.com/dreamguxiang) for initiating and maintaining the [BETweaker](https://github.com/dreamguxiang/BETweaker) project.
+- Thanks to 🐟's sponsor
 
 ### 📞 Contact
 
