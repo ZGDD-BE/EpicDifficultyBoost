@@ -19,14 +19,6 @@ class VariantParameterList {
 
 #define AFTER_EXTRA
 // Add Member There
-public:
-class Parameter
-{
-  uint64_t type;
-  void *data;
-};
-
-Parameter parameters[10];
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_VARIANTPARAMETERLIST

@@ -70,8 +70,8 @@ void PluginInit()
     loadConfig();
     loadDatabase();
     logger.info("Plugin initialized!");
-    Event::ServerStartedEvent::subscribe([](const Event::ServerStartedEvent) {
-        RegCommand();
-        return true;
-        });
+    // Event::ServerStartedEvent::subscribe([](const Event::ServerStartedEvent) {
+    //     RegCommand();
+    //     return true;
+    //     });
 }
