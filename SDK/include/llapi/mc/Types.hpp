@@ -71,6 +71,10 @@ public:
     inline operator T() const {
         return id;
     }
+
+    inline T get() const {
+		return id;
+	}
 };
 
 #include "ActorUniqueID.hpp"
@@ -319,7 +323,19 @@ template <typename T>
 class buffer_span;
 
 template <typename T>
-class buffer_span_mut;
+class buffer_span_mut {
+public:
+    T* mBegin;
+    T* mEnd;
+
+    T& operator[](std::size_t index) {
+        return mBegin[index];
+    }
+
+    std::size_t size() const {
+        return mEnd - mBegin;
+    }
+};
 
 template <typename T, typename T2, typename T3, typename T4>
 class ViewT;

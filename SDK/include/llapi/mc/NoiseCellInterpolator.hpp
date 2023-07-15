@@ -19,6 +19,27 @@ class NoiseCellInterpolator {
 
 #define AFTER_EXTRA
 // Add Member There
+public:
+    gsl::span<const float> mInputValues;
+    float mNoise000;
+    float mNoise100;
+    float mNoise001;
+    float mNoise101;
+    float mNoise010;
+    float mNoise110;
+    float mNoise011;
+    float mNoise111;
+    float mValueXY00;
+    float mValueXY10;
+    float mValueXY01;
+    float mValueXY11;
+    float mValueY0;
+    float mValueY1;
+    float mLerpedValue;
+    float mXZDeltaSize;
+    float mYDeltaSize;
+
+
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_NOISECELLINTERPOLATOR

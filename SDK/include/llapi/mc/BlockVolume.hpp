@@ -5,6 +5,7 @@
 #pragma once
 #define AUTO_GENERATED
 #include "llapi/Global.h"
+#include "llapi/mc/Block.hpp"
 
 #define BEFORE_EXTRA
 // Include Headers or Declare Types Here
@@ -20,6 +21,11 @@ class BlockVolume {
 #define AFTER_EXTRA
 // Add Member There
 public:
+    buffer_span_mut<Block const*> mBlocks;
+    unsigned int mWidth;
+    unsigned int mHeight;
+    unsigned int mDepth;
+
 struct BlockVolumeIter {
     BlockVolumeIter() = delete;
     BlockVolumeIter(BlockVolumeIter const&) = delete;

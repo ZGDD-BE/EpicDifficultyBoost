@@ -32,7 +32,7 @@ public:
 };
 enum class NumberConversionResult;
 template <typename T0, int i1, int i2, int i3>
-class MultidimensionalArray {
+class MultidimensionalArray :public std::array<T0, i1* i2* i3>{
 public:
     MultidimensionalArray() = delete;
     MultidimensionalArray(MultidimensionalArray const&) = delete;

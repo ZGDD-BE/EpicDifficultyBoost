@@ -5,6 +5,7 @@
 #pragma once
 #define AUTO_GENERATED
 #include "llapi/Global.h"
+#include "ImprovedNoise.hpp"
 
 #define BEFORE_EXTRA
 // Include Headers or Declare Types Here
@@ -19,6 +20,13 @@ class PerlinNoise {
 
 #define AFTER_EXTRA
 // Add Member There
+public:
+    const int mLevels;
+    const int mMinLevel;
+    std::vector<ImprovedNoise, std::allocator<ImprovedNoise> > mNoiseLevels;
+    float mNormalizationFactor;
+
+
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_PERLINNOISE
