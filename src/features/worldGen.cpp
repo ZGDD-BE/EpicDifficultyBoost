@@ -91,17 +91,22 @@ public:
     std::vector<std::array<SeamlessChunkBlendingAttenuatorUtil::AttenuationData, 4>> mChunkAttenuationData;
     DividedPos2d<4> mMinPos;
     int16_t mMinHeight;
-
-    SeamlessChunkBlendingAttenuatorUtil::AttenuationData& getAttenuationData(int x, int z) {
-        // Assuming x and z are within the valid range
-        return mChunkAttenuationData[x][z];
-    }
 };
+
+struct TerrainInfo
+{
+    float offset;
+    float factor;
+    float jaggedness;
+};
+
 
 
 #include <llapi/mc/BlockSource.hpp>
 #include <llapi/mc/SimplexNoise.hpp>
 #include <llapi/mc/IRandom.hpp>
+#include <llapi/mc/OverworldNoises3d.hpp>
+
 TInstanceHook(void, "?_prepareHeights@OverworldGeneratorMultinoise@@EEAAXAEAVBlockVolume@@AEBVChunkPos@@AEBVWorldGenCache@@PEAVAquifer@@$$QEAV?$function@$$A6AXAEBVBlockPos@@AEBVBlock@@H@Z@std@@_NPEAV?$vector@FV?$allocator@F@std@@@7@H@Z",
     OverworldGeneratorMultinoise,
     BlockVolume* box,
@@ -111,13 +116,39 @@ TInstanceHook(void, "?_prepareHeights@OverworldGeneratorMultinoise@@EEAAXAEAVBlo
     std::function<void(BlockPos const&, Block const&, int)>* tickUpdateFn,
     bool factorInBeardsAndShavers,
     SeamlessChunkBlendingAttenuator* ZXheights) {
-    Dimension* dimension = &((BlockSource*)(this))->getDimension();
+
+    original(this, box, chunkPos, worldGenCache, aquiferPtr, tickUpdateFn, factorInBeardsAndShavers, ZXheights);
+
+    Dimension* dimension = Global<Level>->getDimension(0).get();
     const Block& stone = BlockTypeRegistry::getDefaultBlockState(VanillaBlockTypeIds::Stone, 1);
     const Block& dirt = BlockTypeRegistry::getDefaultBlockState(VanillaBlockTypeIds::Dirt, 1);
     const Block& grass = BlockTypeRegistry::getDefaultBlockState(VanillaBlockTypeIds::Grass, 1);
     const Block& bedrock = BlockTypeRegistry::getDefaultBlockState(VanillaBlockTypeIds::Bedrock, 1);
     const Block& air = BedrockBlockTypes::mAir->getDefaultState();
     PerlinNoise generator(233, 8, 1); // Assuming PerlinNoise takes seed, levels, and minLevel as parameters
+    TerrainInfo v142{};
+
+    if (ZXheights != nullptr)
+    {
+        this->_attenuateOffsetAndFactor(ZXheights->mMinPos, v142);
+        auto v49 = 39;
+        while (true)
+        {
+            DimensionHeightRange heightRG = dimension->getHeightRange();
+            auto v53 = (heightRG.min < 0) ? -1 : 0;
+            auto v54 = 8 * (v53 + (unsigned __int8)v49 - (v53 - heightRG.min) / 8);
+            auto factor = v142.factor;
+            auto offset = v142.offset;
+            auto v55 = OverworldNoises3d::computeInitialDensity(v54, offset, factor, 0.0);
+            if (OverworldGeneratorMultinoise::_applySlides(heightRG, v55 - 90.0, v49) > 50.0) {
+                break;
+            }
+            if (--v49 < 0) {
+                break;
+            }
+        }
+    }
+
 
     for (int x = 0; x < 16; x++) {
         for (int z = 0; z < 16; z++) {
@@ -129,12 +160,33 @@ TInstanceHook(void, "?_prepareHeights@OverworldGeneratorMultinoise@@EEAAXAEAVBlo
                 // Map noise to desired height range
                 int currentHeight = static_cast<int>(noiseValue*1.4 + 150); // 40 is the desired height range, 60 is the desired minimum height
                 BlockPos blockPos(x, y, z);
-                const Block& block = y <= currentHeight ? (y == currentHeight ? grass : (y == currentHeight - 1 ? dirt : stone)) : air;
+                //const Block& block = y <= currentHeight ? stone : air;
                 size_t index = box->index(blockPos);
+                //if (index < box->mBlocks.size()) {
+                //    box->mBlocks[index] = &block;
+                //}
+                // 
+                //if (y <= currentHeight) {
+                //    const Block& block = stone;
+                //    size_t index = box->index(blockPos);
+                //    if (index < box->mBlocks.size()) {
+                //        box->mBlocks[index] = &block;
+                //    }
+                //}
 
                 if (index < box->mBlocks.size()) {
-                    box->mBlocks[index] = &block;
+                    if (y == currentHeight) {
+                        box->mBlocks[index] = &grass;
+                    }
+                    else if (y >= currentHeight - 3 && y < currentHeight) {
+                        box->mBlocks[index] = &dirt;
+                    }
+                    else if (y < currentHeight) {
+                        box->mBlocks[index] = &stone;
+                    }
                 }
+
+
                 //if (ZXheights != nullptr && y == box->mHeight - 1) {
                 //    ZXheights->getAttenuationData(x, z).mBlendTargetHeight.mValue = currentHeight;
                 //}

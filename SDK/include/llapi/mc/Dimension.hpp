@@ -11,8 +11,8 @@
 class DimensionHeightRange
 {
 public:
-    short min;
-    short max;
+    __int16 min;
+    __int16 max;
 };
 #undef BEFORE_EXTRA
 
