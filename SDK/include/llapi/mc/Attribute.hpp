@@ -5,17 +5,9 @@
 #pragma once
 #define AUTO_GENERATED
 #include "llapi/Global.h"
-#include "HashedString.hpp"
 
 #define BEFORE_EXTRA
 // Include Headers or Declare Types Here
-enum class RedefinitionMode : __int8
-{
-  KeepCurrent = 0x0,
-  UpdateToNewDefault = 0x1,
-};
-
-
 
 #undef BEFORE_EXTRA
 
@@ -27,11 +19,6 @@ class Attribute {
 
 #define AFTER_EXTRA
 // Add Member There
-  RedefinitionMode mRedefinitionMode;
-  bool mSyncable;
-  uint32_t mIDValue;
-  HashedString mName;
-
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_ATTRIBUTE

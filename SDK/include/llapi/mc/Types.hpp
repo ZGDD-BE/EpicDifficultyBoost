@@ -55,6 +55,10 @@ namespace reflection {
 struct Schema {};
 } // namespace reflection
 
+namespace cereal {
+struct Schema {};
+}
+
 template <typename A, typename T>
 class AutomaticID {
     T id;
@@ -71,10 +75,6 @@ public:
     inline operator T() const {
         return id;
     }
-
-    inline T get() const {
-		return id;
-	}
 };
 
 #include "ActorUniqueID.hpp"
@@ -336,6 +336,8 @@ public:
         return mEnd - mBegin;
     }
 };
+
+
 
 template <typename T, typename T2, typename T3, typename T4>
 class ViewT;

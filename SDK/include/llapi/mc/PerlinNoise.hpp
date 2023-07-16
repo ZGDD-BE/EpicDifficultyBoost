@@ -5,10 +5,10 @@
 #pragma once
 #define AUTO_GENERATED
 #include "llapi/Global.h"
-#include "ImprovedNoise.hpp"
 
 #define BEFORE_EXTRA
 // Include Headers or Declare Types Here
+#include "ImprovedNoise.hpp"
 
 #undef BEFORE_EXTRA
 
@@ -21,12 +21,10 @@ class PerlinNoise {
 #define AFTER_EXTRA
 // Add Member There
 public:
-    const int mLevels;
-    const int mMinLevel;
-    std::vector<ImprovedNoise, std::allocator<ImprovedNoise> > mNoiseLevels;
-    float mNormalizationFactor;
-
-
+  const int mLevels;
+  const int mMinLevel;
+  std::vector<ImprovedNoise> mNoiseLevels;
+  float mNormalizationFactor;
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_PERLINNOISE
@@ -37,29 +35,29 @@ public:
 
 public:
     /**
-     * @symbol ??0PerlinNoise\@\@QEAA\@IHH\@Z
-     */
-    MCAPI PerlinNoise(unsigned int, int, int);
-    /**
      * @symbol ??0PerlinNoise\@\@QEAA\@AEBV0\@\@Z
      */
     MCAPI PerlinNoise(class PerlinNoise const &);
     /**
-     * @symbol ??0PerlinNoise\@\@QEAA\@AEAVIRandom\@\@UYBlendingBugSettings\@\@HH\@Z
+     * @symbol ??0PerlinNoise\@\@QEAA\@IHH\@Z
      */
-    MCAPI PerlinNoise(class IRandom &, struct YBlendingBugSettings, int, int);
+    MCAPI PerlinNoise(unsigned int, int, int);
     /**
      * @symbol ??0PerlinNoise\@\@QEAA\@AEAVIRandom\@\@HH\@Z
      */
     MCAPI PerlinNoise(class IRandom &, int, int);
     /**
-     * @symbol ?getRegion\@PerlinNoise\@\@QEBAXPEAMAEBVVec3\@\@HHH1\@Z
+     * @symbol ??0PerlinNoise\@\@QEAA\@AEAVIRandom\@\@UYBlendingBugSettings\@\@HH\@Z
      */
-    MCAPI void getRegion(float *, class Vec3 const &, int, int, int, class Vec3 const &) const;
+    MCAPI PerlinNoise(class IRandom &, struct YBlendingBugSettings, int, int);
     /**
      * @symbol ?getRegion\@PerlinNoise\@\@QEBAXPEAMAEBVVec2\@\@HH1M\@Z
      */
     MCAPI void getRegion(float *, class Vec2 const &, int, int, class Vec2 const &, float) const;
+    /**
+     * @symbol ?getRegion\@PerlinNoise\@\@QEBAXPEAMAEBVVec3\@\@HHH1\@Z
+     */
+    MCAPI void getRegion(float *, class Vec3 const &, int, int, int, class Vec3 const &) const;
     /**
      * @symbol ?getValue\@PerlinNoise\@\@QEBAMAEBVVec3\@\@\@Z
      */

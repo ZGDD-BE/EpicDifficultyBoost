@@ -19,9 +19,6 @@ class SimplexNoise {
 
 #define AFTER_EXTRA
 // Add Member There
-        Vec3 mOrigin;
-        int mNoiseMap[512];
-
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_SIMPLEXNOISE
@@ -37,12 +34,12 @@ public:
      */
     MCAPI SimplexNoise(class IRandom &, bool);
     /**
-     * @symbol ?_getValue\@SimplexNoise\@\@QEBAMAEBVVec2\@\@\@Z
-     */
-    MCAPI float _getValue(class Vec2 const &) const;
-    /**
      * @symbol ?_getValue\@SimplexNoise\@\@QEBAMAEBVVec3\@\@\@Z
      */
     MCAPI float _getValue(class Vec3 const &) const;
+    /**
+     * @symbol ?_getValue\@SimplexNoise\@\@QEBAMAEBVVec2\@\@\@Z
+     */
+    MCAPI float _getValue(class Vec2 const &) const;
 
 };

@@ -9,10 +9,8 @@
 
 #define BEFORE_EXTRA
 // Include Headers or Declare Types Here
-#include "OverworldGenerator.hpp"
 
 #undef BEFORE_EXTRA
-#define ENABLE_VIRTUAL_FAKESYMBOL_OVERWORLDGENERATORMULTINOISE = true;
 
 /**
  * @brief MC class OverworldGeneratorMultinoise.
@@ -22,7 +20,6 @@ class OverworldGeneratorMultinoise {
 
 #define AFTER_EXTRA
 // Add Member There
-
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_OVERWORLDGENERATORMULTINOISE
@@ -113,7 +110,6 @@ public:
      * @symbol ?_makeBiomeSource\@OverworldGeneratorMultinoise\@\@AEAA?AV?$unique_ptr\@VBiomeSource\@\@U?$default_delete\@VBiomeSource\@\@\@std\@\@\@std\@\@AEBVXoroshiroPositionalRandomFactory\@\@AEBVBiomeRegistry\@\@PEBVBiome\@\@\@Z
      */
     MCAPI std::unique_ptr<class BiomeSource> _makeBiomeSource(class XoroshiroPositionalRandomFactory const &, class BiomeRegistry const &, class Biome const *);
-
 
 private:
 
