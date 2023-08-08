@@ -37,11 +37,11 @@ public:
     /**
      * @symbol ?sendEvent\@PlayerEventCoordinator\@\@QEAAXAEBV?$EventRef\@U?$PlayerGameplayEvent\@X\@\@\@\@\@Z
      */
-    // MCAPI void sendEvent(class EventRef<struct PlayerGameplayEvent<void>> const &);
-    // /**
-    //  * @symbol ?sendEvent\@PlayerEventCoordinator\@\@QEAA?AW4CoordinatorResult\@\@AEBV?$EventRef\@U?$PlayerGameplayEvent\@W4CoordinatorResult\@\@\@\@\@\@\@Z
-    //  */
-    // MCAPI enum class CoordinatorResult sendEvent(class EventRef<struct PlayerGameplayEvent<enum class CoordinatorResult>> const &);
+    MCAPI void sendEvent(class EventRef<struct PlayerGameplayEvent<void>> const &);
+    /**
+     * @symbol ?sendEvent\@PlayerEventCoordinator\@\@QEAA?AW4CoordinatorResult\@\@AEBV?$EventRef\@U?$PlayerGameplayEvent\@W4CoordinatorResult\@\@\@\@\@\@\@Z
+     */
+    MCAPI enum class CoordinatorResult sendEvent(class EventRef<struct PlayerGameplayEvent<enum class CoordinatorResult>> const &);
     /**
      * @symbol ?sendPlayerAwardAchievement\@PlayerEventCoordinator\@\@QEAAXAEAVPlayer\@\@W4AchievementIds\@MinecraftEventing\@\@\@Z
      */
