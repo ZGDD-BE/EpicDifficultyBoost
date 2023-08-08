@@ -1,4 +1,6 @@
 #include <global.h>
+static_assert(sizeof(VariantParameterList) == 160, "Size of VariantParameterList is not correct");
+
 
 namespace SuperCreeper {
     auto halfMaxHealth = 10;
@@ -28,6 +30,7 @@ namespace SuperCreeper {
     if (_this->getHealth()-damage <= halfMaxHealth){
         auto tags = _this->getTags();
         if ((std::find(tags.begin(), tags.end(), "F") == tags.end())){
+            assert(vpl.size() != 0 && "Size of VariantParameterList is 0!");
             _this->executeEvent("minecraft:start_exploding_forced",VariantParameterList());
             _this->addTag("F");
             }
