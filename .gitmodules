@@ -1,4 +1,4 @@
-[submodule "SDK-CPP"]
+[submodule "SDK"]
 	path = SDK
 	url = https://github.com/LiteLDev/SDK-CPP
 	branch = develop
